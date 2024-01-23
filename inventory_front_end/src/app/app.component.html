@@ -1,0 +1,35 @@
+<div class="container mt-2">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+        <div class="d-flex">
+          <a class="navbar-brand" href="#">INVENTORY</a>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page">Home</a>
+            </li>
+            <li *ngIf="keycloakService.getUserRoles().includes('ADMIN')" class="nav-item">
+              <a class="nav-link" routerLink="/products">Products</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <a *ngIf="profile" class="nav-link">{{keycloakService.getUsername()}}</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li *ngIf="!profile"><a class="dropdown-item" (click)="handleLogin()">Login</a></li>
+                <li *ngIf="profile"><a class="dropdown-item" (click)="handleLogout()">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>
+
